@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ff5a36">
+  <meta name="description" content="ค้นหา เลือก และสุ่มร้านอาหารจาก ICONSIAM และ ICS">
+  <title>กินอะไรดี? — ICONSIAM × ICS</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap');
+    :root{--ink:#1a1815;--muted:#706b64;--paper:#f6f1e8;--card:#fffdf9;--line:#ded6ca;--orange:#ff5a36;--lime:#d9ef54;--blue:#315ee8;--shadow:0 16px 42px #47372016}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Thai",sans-serif}.wrap{width:min(1180px,calc(100% - 36px));margin:auto}
+    button,input,select{font:inherit}button{color:inherit}.topbar{padding:22px 0;border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{font:800 17px Manrope,sans-serif}.brand i{display:inline-block;width:11px;height:11px;background:var(--orange);border-radius:50%;margin-right:7px}.place{font-size:13px;color:var(--muted);background:#fff8;border:1px solid var(--line);padding:7px 12px;border-radius:999px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:38px;align-items:end;padding:48px 0 30px}.kicker{font:700 12px Manrope,sans-serif;color:var(--orange);letter-spacing:2px}.hero h1{font-size:clamp(44px,7vw,82px);line-height:.96;letter-spacing:-3px;margin:10px 0 16px}.hero h1 span{color:var(--orange)}.hero p{color:var(--muted);font-size:17px;max-width:640px;margin:0}.hero-card{background:var(--ink);color:white;padding:24px;border-radius:22px;min-height:185px;display:flex;flex-direction:column;align-items:flex-start}.hero-card b{font-size:22px}.hero-card p{font-size:14px;color:#c9c5bd;margin:7px 0 18px}.hero-card .btn{margin-top:auto}
+    .btn{border:0;border-radius:12px;padding:11px 15px;font-weight:700;cursor:pointer;transition:.18s}.btn:hover{transform:translateY(-2px)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.btn-dark{background:var(--ink);color:white}.btn-primary{background:var(--lime);color:var(--ink)}.btn-outline{background:transparent;border:1px solid var(--line)}.btn-orange{background:var(--orange);color:white}
+    .controls{position:sticky;top:0;z-index:20;background:#f6f1e8ed;backdrop-filter:blur(14px);border-block:1px solid var(--line);padding:14px 0}.control-grid{display:grid;grid-template-columns:1fr 180px 150px auto;gap:9px}.field{height:48px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:0 13px;outline:none}.field:focus{border-color:var(--orange);box-shadow:0 0 0 3px #ff5a3619}.search{position:relative}.search input{width:100%;padding-left:42px}.search span{position:absolute;left:14px;top:12px;font-size:19px}.chips{display:flex;gap:7px;overflow:auto;padding-top:13px;scrollbar-width:none}.chip{flex:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 13px;cursor:pointer;color:var(--muted)}.chip.active{background:var(--ink);color:white;border-color:var(--ink)}
+    .summary{display:flex;justify-content:space-between;align-items:end;margin:27px 0 15px}.summary h2{margin:0;font-size:26px}.count{font:600 12px Manrope;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding-bottom:145px}.shop{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:.2s}.shop:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.shop.selected{border:2px solid var(--orange)}.logo-wrap{height:170px;background:#fff;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid #eee8de;padding:24px 28px}.logo{position:relative;z-index:1;display:block;width:auto!important;height:auto!important;max-width:82%!important;max-height:82%!important;object-fit:contain!important;object-position:center!important;flex:none}.logo-fallback{position:absolute;font:800 28px Manrope;color:#776f65}.source{position:absolute;z-index:2;left:10px;top:10px;background:#181713d9;color:white;padding:4px 7px;border-radius:7px;font:700 10px Manrope}.shop-body{padding:15px;display:flex;flex-direction:column;flex:1}.shop h3{font-size:18px;line-height:1.28;margin:0 0 11px}.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:15px}.tag{font-size:11px;color:var(--muted);background:#f1ece4;border-radius:7px;padding:5px 7px}.tag.blue{color:#244ab4;background:#e9efff}.card-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:auto}.detail{display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:10px;font-weight:600;font-size:13px}.select-btn{background:var(--ink);color:white;padding:9px 11px;border-radius:10px;border:0;cursor:pointer;font-weight:700}.selected .select-btn{background:var(--orange)}.empty{grid-column:1/-1;text-align:center;padding:70px 15px;color:var(--muted)}
+    .tray{position:fixed;z-index:30;left:50%;bottom:14px;transform:translateX(-50%);width:min(900px,calc(100% - 24px));background:#181713;color:white;border:1px solid #ffffff28;border-radius:19px;padding:13px 14px;box-shadow:0 20px 60px #0005;display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:center}.tray-count{font:800 20px Manrope;white-space:nowrap}.tray-count small{font-size:11px;color:#aaa59d;display:block}.picked{display:flex;gap:6px;overflow:auto;scrollbar-width:none}.picked span{flex:none;background:#ffffff13;border:1px solid #ffffff1b;padding:6px 9px;border-radius:999px;font-size:12px}.picked button{border:0;background:none;color:#aaa;margin-left:5px;cursor:pointer}.tray-actions{display:flex;gap:8px}.tray .btn-outline{color:white;border-color:#ffffff30}
+    dialog{border:0;padding:0;border-radius:24px;background:var(--card);width:min(560px,calc(100% - 24px));box-shadow:0 30px 100px #0006}dialog::backdrop{background:#17130eb5;backdrop-filter:blur(5px)}.modal{padding:24px}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-head b{font:800 12px Manrope;color:var(--orange);letter-spacing:1.5px}.close{border:0;background:#eee8df;width:35px;height:35px;border-radius:50%;font-size:20px;cursor:pointer}.wheel-wrap{position:relative;width:min(390px,90vw);aspect-ratio:1;margin:15px auto}.pointer{position:absolute;z-index:2;left:50%;top:-2px;transform:translateX(-50%);width:0;height:0;border-left:17px solid transparent;border-right:17px solid transparent;border-top:35px solid var(--ink);filter:drop-shadow(0 3px 2px #0003)}#wheel{width:100%;height:100%;display:block;border-radius:50%;box-shadow:0 10px 30px #0002;transition:transform 4.2s cubic-bezier(.14,.72,.12,1)}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:var(--card);border:7px solid var(--ink)}.winner{text-align:center;min-height:68px}.winner h2{margin:4px 0;font-size:27px}.winner p{margin:0;color:var(--muted)}.winner a{color:var(--blue);font-weight:700}.spin-row{display:flex;gap:9px;margin-top:17px}.spin-row .btn{flex:1}.note{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding:22px 0 155px}.note a{color:inherit}
+    @media(max-width:850px){.hero{grid-template-columns:1fr}.control-grid{grid-template-columns:1fr 1fr}.search{grid-column:1/-1}.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:580px){.wrap{width:min(100% - 28px,1180px)}.place{display:none}.hero{padding-top:36px}.hero h1{font-size:49px;letter-spacing:-2px}.controls{position:relative}.control-grid{grid-template-columns:1fr}.search{grid-column:auto}.grid{grid-template-columns:1fr}.logo-wrap{height:210px;padding:30px 34px}.logo{max-width:78%!important;max-height:78%!important}.tray{grid-template-columns:1fr auto}.tray-count{display:none}.picked{grid-column:1/-1;grid-row:1}.tray-actions{grid-column:2;grid-row:2}.spin-row{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.btn,.shop,#wheel{transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="wrap nav"><div class="brand"><i></i>FOOD PICKER</div><div class="place">ICONSIAM × ICS · Official directory</div></div></header>
+  <main>
+    <section class="wrap hero">
+      <div><div class="kicker">DINING DECISION TOOL</div><h1>วันนี้<br>กิน<span>อะไรดี?</span></h1><p>ค้นหาร้านจากข้อมูล Directory ทางการ เลือกตัวเต็งได้สูงสุด 5 ร้าน แล้วให้วงล้อช่วยตัดสินใจ</p></div>
+      <div class="hero-card"><b>เลือกไม่ถูกใช่ไหม?</b><p>กด “เพิ่มเข้าวงล้อ” ที่ร้านที่สนใจอย่างน้อย 2 ร้าน แล้วเริ่มหมุนได้ทันที</p><button class="btn btn-primary" id="quickPick">สุ่มจากผลค้นหา →</button></div>
+    </section>
+    <section class="controls"><div class="wrap">
+      <div class="control-grid">
+        <label class="search"><span>⌕</span><input id="search" class="field" placeholder="ค้นหาชื่อร้าน..." autocomplete="off"></label>
+        <select id="location" class="field" aria-label="เลือกสถานที่"><option value="all">ทุกสถานที่</option><option>ICONSIAM</option><option>ICS</option></select>
+        <select id="floor" class="field" aria-label="เลือกชั้น"><option value="all">ทุกชั้น</option></select>
+        <button class="btn btn-dark" id="random">สุ่มจากผลลัพธ์</button>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div></section>
+    <section class="wrap">
+      <div class="summary"><h2 id="heading">ร้านทั้งหมด</h2><span class="count" id="count"></span></div>
+      <div class="grid" id="grid"></div>
+      <div class="note">ข้อมูลชื่อร้าน โลโก้ ลิงก์ และชั้นอ้างอิงจาก <a href="https://www.iconsiam.com/th/directory" target="_blank" rel="noopener">ICONSIAM Directory</a> และ <a href="https://ics.iconsiam.com/en/directory" target="_blank" rel="noopener">ICS Directory</a> ณ วันที่ 20 ก.ย. 2026 การจัดหมวดหมู่ในหน้านี้ทำขึ้นเพื่อช่วยค้นหา โปรดตรวจสอบข้อมูลล่าสุดจากหน้ารายละเอียดของร้านก่อนเดินทาง</div>
+    </section>
+  </main>
+  <aside class="tray" aria-label="ร้านที่เลือก">
+    <div class="tray-count"><span id="selectedCount">0</span>/5 <small>ร้านในวงล้อ</small></div>
+    <div class="picked" id="picked"><span>ยังไม่ได้เลือกร้าน</span></div>
+    <div class="tray-actions"><button class="btn btn-outline" id="clear" disabled>ล้าง</button><button class="btn btn-orange" id="openWheel" disabled>เปิดวงล้อ</button></div>
+  </aside>
+  <dialog id="wheelDialog"><div class="modal">
+    <div class="modal-head"><b>RESTAURANT WHEEL</b><button class="close" aria-label="ปิด">×</button></div>
+    <div class="wheel-wrap"><div class="pointer"></div><canvas id="wheel" width="780" height="780"></canvas><div class="wheel-center"></div></div>
+    <div class="winner" id="winner"><h2>พร้อมหมุนแล้ว</h2><p>ให้วงล้อช่วยเลือกร้านจากรายการของคุณ</p></div>
+    <div class="spin-row"><button class="btn btn-outline close-action">กลับไปเลือกร้าน</button><button class="btn btn-orange" id="spin">หมุนวงล้อ</button></div>
+  </div></dialog>
+  <dialog id="randomDialog"><div class="modal"><div class="modal-head"><b>QUICK PICK</b><button class="close" aria-label="ปิด">×</button></div><div class="winner" style="padding:45px 0 25px"><h2 id="randomName"></h2><p id="randomMeta"></p><p><a id="randomLink" target="_blank" rel="noopener">ดูรายละเอียดร้าน ↗</a></p></div><div class="spin-row"><button class="btn btn-outline close-action">ปิด</button><button class="btn btn-dark" id="again">สุ่มใหม่</button></div></div></dialog>
+  <script>
+    const I='https://www.iconsiam.com/th/dining/';
+    const C='https://ics.iconsiam.com/en/directory/detail/';
+    const shops=[
+      {n:'KAMU',c:'เครื่องดื่ม',l:'ICONSIAM',f:'6F',u:I+'kamu',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/JP9EQLAISDY7C_KAMU.jpg'},
+      {n:'Yenly Yours',c:'ขนมหวาน',l:'ICONSIAM',f:'4F',u:I+'yenly-yours',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/YenlyYours.png'},
+      {n:'Buddhi Belly',c:'ขนมหวาน',l:'ICONSIAM',f:'3F',u:I+'buddhi-belly',i:'https://d39e6chxflpvuj.cloudfront.net/media/1-1_20Buddhi_20Belly.jpg'},
+      {n:'Blendies',c:'เครื่องดื่ม',l:'ICONSIAM',f:'GF',u:I+'blendies',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1711441654B.jpg'},
+      {n:'Torofries',c:'ของทานเล่น',l:'ICONSIAM',f:'6F',u:I+'torofries',i:'https://d39e6chxflpvuj.cloudfront.net/media/thumbnail_logo_Toro_Fries_Signature_01_f5e0c24760.jpg'},
+      {n:'Blue by Alain Ducasse Bakery',c:'เบเกอรี่',l:'ICONSIAM',f:'GF',u:I+'blue-by-alain-ducasse-bakery',i:'https://d39e6chxflpvuj.cloudfront.net/media/c23fjfhlacrn.webp'},
+      {n:"Bunch Patisserie by Conkey's",c:'เบเกอรี่',l:'ICONSIAM',f:'6F',u:I+'bunch-patisserie-by-conkey-s',i:'https://d39e6chxflpvuj.cloudfront.net/media/thumbnail_Logo_Bunch_Patisserie_20343b555b.jpg'},
+      {n:'Easy Buddy',c:'อาหารไทย',l:'ICONSIAM',f:'6F',u:I+'easy-buddy',i:'https://d39e6chxflpvuj.cloudfront.net/media/easy-buddy-logo.jpg'},
+      {n:'Fallabella',c:'อาหารตะวันตก',l:'ICONSIAM',f:'6F',u:I+'fallabella',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/JTE1OPWNST05P_FALLABELLA.jpg'},
+      {n:'HUA SENG HONG',c:'อาหารจีน',l:'ICONSIAM',f:'GF',u:I+'hua-seng-hong',i:'https://d39e6chxflpvuj.cloudfront.net/media/hua-seng-hong.jpg'},
+      {n:'Jumbo Seafood',c:'อาหารทะเล',l:'ICONSIAM',f:'GF',u:I+'jumbo-seafood',i:'https://d39e6chxflpvuj.cloudfront.net/media/Jumbo-Seafood-ICONSIAM.jpg'},
+      {n:'KFC',c:'ฟาสต์ฟู้ด',l:'ICONSIAM',f:'UG',u:I+'kfc',i:'https://d39e6chxflpvuj.cloudfront.net/media/278891903_5018122814909375_4282429406764024424_n.jpg'},
+      {n:'Masala Art',c:'อาหารอินเดีย',l:'ICONSIAM',f:'6F',u:I+'masala-art',i:'https://d39e6chxflpvuj.cloudfront.net/media/JSECF3JKW5B9G_masala_20art.jpg'},
+      {n:'Nose Tea',c:'เครื่องดื่ม',l:'ICONSIAM',f:'6F',u:I+'nose-tea',i:'https://d39e6chxflpvuj.cloudfront.net/media/messageImage_1754541839320.jpg'},
+      {n:'PASH JUICES',c:'เครื่องดื่ม',l:'ICONSIAM',f:'3F',u:I+'pash-juices',i:'https://d39e6chxflpvuj.cloudfront.net/media/thumbnail_453753374_920861863386825_7494789987919631292_n_11fb37b323.jpg'},
+      {n:'Peppery Thai Bistro',c:'อาหารไทย',l:'ICONSIAM',f:'GF',u:I+'peppery-thai-bistro',i:'https://d39e6chxflpvuj.cloudfront.net/media/peppery-thai-bistro.jpg'},
+      {n:'S&P',c:'อาหารไทย',l:'ICONSIAM',f:'4F',u:I+'s-p',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/S_P.jpg'},
+      {n:'SUPER MATCHA',c:'เครื่องดื่ม',l:'ICONSIAM',f:'GF',u:I+'super-matcha',i:'https://d39e6chxflpvuj.cloudfront.net/media/526352886_122096857526965335_5524868867230765536_n.jpg'},
+      {n:"Swensen's",c:'ขนมหวาน',l:'ICONSIAM',f:'4F',u:I+'swensen-s',i:'https://d39e6chxflpvuj.cloudfront.net/media/LBNIUCXDCONZ8_swensen_27s-logo.jpg'},
+      {n:'Tea Jian Cha',c:'เครื่องดื่ม',l:'ICONSIAM',f:'5F',u:I+'tea-jian-cha',i:'https://d39e6chxflpvuj.cloudfront.net/media/thumbnail_474148493_122207860280080411_8187721266018513159_n_8ca5f17b89.jpg'},
+      {n:'UMAMI',c:'อาหารญี่ปุ่น',l:'ICONSIAM',f:'6F',u:I+'umami',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1732870241V.jpg'},
+      {n:'Yolé',c:'ขนมหวาน',l:'ICONSIAM',f:'GF',u:I+'yole',i:'https://d39e6chxflpvuj.cloudfront.net/media/be2dfd152880937.Y3JvcCwyODAwLDIxOTAsMCwzMDQ.png'},
+      {n:'ANUSAWARI BOAT NOODLE',c:'อาหารไทย',l:'ICS',f:'3F',u:C+'anusawari--boat-noodle',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689747563R.jpg'},
+      {n:'ChaTraMue',c:'เครื่องดื่ม',l:'ICS',f:'GF',u:C+'chatramue',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689582275E.jpg'},
+      {n:'Double Slash',c:'เครื่องดื่ม',l:'ICS',f:'GF',u:C+'double-slash',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689568554W.jpg'},
+      {n:'DURIAN MAHANAKORN',c:'ขนมหวาน',l:'ICS',f:'ไม่ระบุ',u:C+'durian-mahanakorn',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689582590Y.jpg'},
+      {n:'Earw Thai Chinese Cuisine',c:'อาหารจีน',l:'ICS',f:'4F',u:C+'earw-thai-chinese-cuisine',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689665635Y.jpg'},
+      {n:'FUKU MATCHA',c:'เครื่องดื่ม',l:'ICS',f:'GF',u:C+'fuku-matcha',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689841972T.jpg'},
+      {n:'Get Fresh',c:'อาหารสุขภาพ',l:'ICS',f:'GF',u:C+'get-fresh',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689838879H.jpg'},
+      {n:'GOGO GYOZA & RAMEN',c:'อาหารญี่ปุ่น',l:'ICS',f:'4F',u:C+'gogo-gyoza-and-ramen',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689653636A.jpg'},
+      {n:'HIA LEK CHINESE SOUP MOO SAM YANG',c:'อาหารจีน',l:'ICS',f:'4F',u:C+'hia-lek-chinese-soup-moo-sam-yang',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1699864106E.jpg'},
+      {n:'Inthanin',c:'เครื่องดื่ม',l:'ICS',f:'1F',u:C+'inthanin',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689826226J.jpg'},
+      {n:'KATEI SHABU',c:'ชาบู/ปิ้งย่าง',l:'ICS',f:'4F',u:C+'katei-shabu',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689655368H.jpg'},
+      {n:'mamemi',c:'อาหารญี่ปุ่น',l:'ICS',f:'4F',u:C+'mamemi',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689655676U.jpg'},
+      {n:"MOM'S TOUCH",c:'อาหารเกาหลี',l:'ICS',f:'GF',u:C+'moms-touch',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689837427P.jpg'},
+      {n:'MOS BURGER',c:'ฟาสต์ฟู้ด',l:'ICS',f:'GF',u:C+'mos-burger',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689837578E.jpg'},
+      {n:'NESWELL',c:'เครื่องดื่ม',l:'ICS',f:'GF',u:C+'neswell',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689574281U.jpg'},
+      {n:'Olino Crepe & Tea',c:'ขนมหวาน',l:'ICS',f:'GF',u:C+'olino-crepe-and-tea',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689841257P.jpg'},
+      {n:'OMU',c:'อาหารญี่ปุ่น',l:'ICS',f:'GF',u:C+'omu',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689837862V.jpg'},
+      {n:'Pang Siam',c:'ขนมหวาน',l:'ICS',f:'GF',u:C+'pang-siam',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689583226H.jpg'},
+      {n:'PunThai Coffee',c:'เครื่องดื่ม',l:'ICS',f:'4F',u:C+'punthai-coffee',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689666657P.jpg'},
+      {n:'REP COFFEE',c:'เครื่องดื่ม',l:'ICS',f:'3F',u:C+'rep-coffee',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689741525R.jpg'},
+      {n:"Santa Fe'",c:'อาหารตะวันตก',l:'ICS',f:'1F',u:C+'santa-fe',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689574729X.jpg'},
+      {n:'STAR ELEPHANT',c:'เครื่องดื่ม',l:'ICS',f:'1F',u:C+'star-elephant',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1714465499S.jpg'},
+      {n:'Starbucks',c:'เครื่องดื่ม',l:'ICS',f:'MF',u:C+'starbucks',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689829230L.jpg'},
+      {n:'White Story',c:'เบเกอรี่',l:'ICS',f:'GF',u:C+'white-story',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689840530N.jpg'},
+      {n:'Yoguruto',c:'ขนมหวาน',l:'ICS',f:'GF',u:C+'yoguruto',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1692873121O.jpg'},
+      {n:'YOU&I Premium Suki Buffet',c:'ชาบู/ปิ้งย่าง',l:'ICS',f:'4F',u:C+'you-and-i-premium-suki-buffet',i:'https://iconsiam-s3-prod.s3.ap-southeast-1.amazonaws.com/assets/1689664102K.jpg'}
+    ].map((s,id)=>({...s,id}));
+    const cats=['ทั้งหมด','เครื่องดื่ม','อาหารไทย','อาหารญี่ปุ่น','อาหารจีน','อาหารเกาหลี','อาหารตะวันตก','อาหารอินเดีย','อาหารทะเล','ชาบู/ปิ้งย่าง','ขนมหวาน','เบเกอรี่','ฟาสต์ฟู้ด','อาหารสุขภาพ','อื่นๆ'];
+    const known=new Set(cats.slice(1,-1)); const selected=new Set(); let active='ทั้งหมด',filtered=[],spinning=false;
+    const $=s=>document.querySelector(s),grid=$('#grid'),search=$('#search'),locationSel=$('#location'),floor=$('#floor');
+    cats.forEach(c=>{const b=document.createElement('button');b.className='chip'+(c==='ทั้งหมด'?' active':'');b.textContent=c;b.onclick=()=>{active=c;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===b));render()};$('#chips').appendChild(b)});
+    function esc(v){return v.replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]))}
+    function refreshFloors(){const loc=locationSel.value,keep=floor.value;const fs=[...new Set(shops.filter(s=>loc==='all'||s.l===loc).map(s=>s.f))].sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));floor.innerHTML='<option value="all">ทุกชั้น</option>'+fs.map(f=>`<option>${f}</option>`).join('');if(fs.includes(keep))floor.value=keep}
+    function render(){const q=search.value.trim().toLowerCase();filtered=shops.filter(s=>(active==='ทั้งหมด'||s.c===active||(active==='อื่นๆ'&&!known.has(s.c)))&&(locationSel.value==='all'||s.l===locationSel.value)&&(floor.value==='all'||s.f===floor.value)&&s.n.toLowerCase().includes(q));$('#heading').textContent=active==='ทั้งหมด'?'ร้านทั้งหมด':active;$('#count').textContent=`${filtered.length} ร้าน · ทั้งหมด ${shops.length} ร้าน`;grid.innerHTML=filtered.length?filtered.map(s=>`<article class="shop ${selected.has(s.id)?'selected':''}" data-id="${s.id}"><div class="logo-wrap"><span class="source">${s.l}</span><span class="logo-fallback">${esc(s.n.slice(0,2).toUpperCase())}</span><img class="logo" src="${s.i}" alt="โลโก้ ${esc(s.n)}" loading="lazy" onerror="this.style.display='none'"></div><div class="shop-body"><h3>${esc(s.n)}</h3><div class="tags"><span class="tag">${s.c}</span><span class="tag blue">${s.l} · ชั้น ${s.f}</span></div><div class="card-actions"><a class="detail" href="${s.u}" target="_blank" rel="noopener">ดูรายละเอียด ↗</a><button class="select-btn" data-pick="${s.id}">${selected.has(s.id)?'เอาออก':'＋ วงล้อ'}</button></div></div></article>`).join(''):'<div class="empty"><div style="font-size:42px">🔎</div><b>ไม่พบร้านที่ค้นหา</b><br>ลองเปลี่ยนคำค้นหาหรือตัวกรอง</div>';document.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>toggle(+b.dataset.pick))}
+    function toggle(id){if(selected.has(id))selected.delete(id);else if(selected.size<5)selected.add(id);else{alert('เลือกได้สูงสุด 5 ร้าน กรุณาเอาร้านหนึ่งออกก่อน');return}render();renderTray()}
+    function renderTray(){const list=[...selected].map(id=>shops[id]);$('#selectedCount').textContent=list.length;$('#picked').innerHTML=list.length?list.map(s=>`<span>${esc(s.n)}<button aria-label="เอา ${esc(s.n)} ออก" data-remove="${s.id}">×</button></span>`).join(''):'<span>ยังไม่ได้เลือกร้าน</span>';document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>toggle(+b.dataset.remove));$('#clear').disabled=!list.length;$('#openWheel').disabled=list.length<2}
+    function quickPick(){if(!filtered.length)return;const s=filtered[Math.floor(Math.random()*filtered.length)];$('#randomName').textContent=s.n;$('#randomMeta').textContent=`${s.c} · ${s.l} ชั้น ${s.f}`;$('#randomLink').href=s.u;$('#randomDialog').showModal()}
+    const colors=['#ff5a36','#315ee8','#d9ef54','#8a5cf5','#23a77b'];
+    function drawWheel(list){const c=$('#wheel'),x=c.getContext('2d'),w=c.width,mid=w/2,r=mid-8,step=Math.PI*2/list.length;x.clearRect(0,0,w,w);list.forEach((s,i)=>{const a=-Math.PI/2+i*step;x.beginPath();x.moveTo(mid,mid);x.arc(mid,mid,r,a,a+step);x.closePath();x.fillStyle=colors[i];x.fill();x.save();x.translate(mid,mid);x.rotate(a+step/2);x.textAlign='right';x.fillStyle=i===2?'#1a1815':'white';x.font='700 25px IBM Plex Sans Thai';let name=s.n.length>23?s.n.slice(0,21)+'…':s.n;x.fillText(name,r-35,9);x.restore()});x.beginPath();x.arc(mid,mid,r,0,Math.PI*2);x.strokeStyle='#1a1815';x.lineWidth=10;x.stroke()}
+    function openWheel(){const list=[...selected].map(id=>shops[id]);drawWheel(list);$('#wheel').style.transition='none';$('#wheel').style.transform='rotate(0deg)';$('#winner').innerHTML='<h2>พร้อมหมุนแล้ว</h2><p>วงล้อมี '+list.length+' ร้านที่คุณเลือก</p>';$('#wheelDialog').showModal()}
+    function spin(){if(spinning)return;spinning=true;const list=[...selected].map(id=>shops[id]),winner=Math.floor(Math.random()*list.length),step=360/list.length,angle=1800+(360-(winner+.5)*step);$('#winner').innerHTML='<h2>กำลังเลือก…</h2><p>รอสักครู่</p>';const wheel=$('#wheel');wheel.style.transition='transform 4.2s cubic-bezier(.14,.72,.12,1)';requestAnimationFrame(()=>wheel.style.transform=`rotate(${angle}deg)`);setTimeout(()=>{const s=list[winner];$('#winner').innerHTML=`<h2>${esc(s.n)}</h2><p>${s.c} · ${s.l} ชั้น ${s.f}<br><a href="${s.u}" target="_blank" rel="noopener">ดูรายละเอียดร้าน ↗</a></p>`;spinning=false},4300)}
+    locationSel.onchange=()=>{refreshFloors();render()};floor.onchange=render;search.oninput=render;$('#random').onclick=quickPick;$('#quickPick').onclick=quickPick;$('#again').onclick=quickPick;$('#clear').onclick=()=>{selected.clear();render();renderTray()};$('#openWheel').onclick=openWheel;$('#spin').onclick=spin;document.querySelectorAll('.close,.close-action').forEach(b=>b.onclick=()=>b.closest('dialog').close());document.querySelectorAll('dialog').forEach(d=>d.onclick=e=>{if(e.target===d)d.close()});
+    refreshFloors();render();renderTray();
+  </script>
+</body>
+</html>
